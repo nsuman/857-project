@@ -1,5 +1,23 @@
 import random
 
+def generate_passwords(n, count, input_file, output_file):
+	'''
+	n: number of passwords to read (to save time reading large files)
+	count: number of variations to generate for each password
+	input_file, output_file: text files of passwords, separated by newlines
+	'''
+	f = open(input_file,'r')
+	o = open(output_file, 'w+')
+	for i in range(n):
+		password = f.readline()
+		variations = password_variations(password, count)
+		for v in variations:
+			o.write(v+'\n')
+
+	f.close()
+	o.close()
+
+
 def password_variations(password, count):
 
 	CAPS_ODDS = 0.1
